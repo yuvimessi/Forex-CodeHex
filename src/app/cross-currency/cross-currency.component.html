@@ -1,0 +1,53 @@
+<h1 class="display-1 text-center"><b>Forex - CodeHex</b></h1>
+<h2 class="text-center">Forex Aggregator and Trends</h2><br><br><br><br>
+
+
+<div id="cross-currency" class="border border-danger"><br>
+
+    <h2 class="text-center text-primary">Cross Currency</h2><br><br>
+
+    <form #crcfForm="ngForm" (ngSubmit)="getCross()" ngNativeValidate>
+        <div class="form-group">
+            <div class="row mx-auto">
+                <label class="col-form-label col-md-2 offset-3" for="currency">Currency Symbol: </label>
+                <div class="col-md-3">
+                    <select name="currency" id="currency" class="form-control" required>
+                        <option value="" selected>Choose Any</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-success">Cross-IT</button>
+                </div>
+            </div><br>
+
+        </div>
+    </form>
+
+    <div id="res">
+        <br>
+        <h2 class="text-center text-warning"><u>Results</u></h2><br><br>
+
+        <div id="resultstab" class="mx-1">
+            <table class="table table-bordered text-center">
+                <thead class="text-danger" id="thead">
+                    <tr>
+                        <th>Currency Symbol</th>
+                        <th>Price</th>
+                        <th>Change</th>
+                        <th>Change Percentage</th>
+                        <th>Last Changed Date</th>
+                    </tr>
+                </thead>
+
+                <tbody id="results" class="text-white">
+                    <!-- populated by getCross() function -->
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

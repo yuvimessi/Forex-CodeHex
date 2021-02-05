@@ -1,0 +1,52 @@
+<h1 class="display-1 text-center"><b>Forex - CodeHex</b></h1>
+    <h2 class="text-center">Forex Aggregator and Trends</h2><br><br>
+
+
+    <div id="user-perf" class="border border-danger"><br>
+
+        <h1 class="text-center text-warning"><u>User Preferences</u></h1>
+        <h2 class="text-center text-primary">Add/ Update your Favorite Currency Preferences</h2><br><br>
+
+        <form #perfForm="ngForm" (ngSubmit)="onSubmit(content)" ngNativeValidate>
+            <div class="form-group">
+                <div class="row mx-auto">
+
+                    <label class="col-form-label col-md-2" for="email">Your Email Address: </label>
+                    <div class="col-md-2">
+                        <input type="email" name="email" id="email" value="{{message}}" class="form-control" placeholder="Your Email ID" readonly>
+                    </div>
+
+
+                    <label class="col-form-label col-md-2" for="pair1">From Currency: </label>
+                    <div class="col-md-2">
+                        <select name="pair1" id="pair1" class="form-control" required>
+                            <option value="" selected>Choose Any</option>
+                        </select>
+                    </div>
+
+                    <label class="col-form-label col-md-2" for="pair2">To Currency: </label>
+                    <div class="col-md-2">
+                        <select name="pair2" id="pair2" class="form-control" required>
+                            <option value="" selected>Choose Any</option>
+                        </select>
+                    </div>
+                </div><br>
+                <div class="offset-6">
+                    <button type="submit"
+                        class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <ng-template #content let-modal>
+        <div class="modal-body container-fluid col-md-10 offset-2 text-dark" id="modal-reginfo">
+    
+            <h4>User Preferences are set now!!</h4>
+    
+            <div class="row col-md-10 offset-2">
+                <button type="button" class="btn btn-success" (click)="dismissAll()">OK</button>
+            </div>
+        </div>
+    </ng-template>

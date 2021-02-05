@@ -1,0 +1,52 @@
+<h1 class="display-1 text-center"><b>Forex - CodeHex</b></h1>
+    <h2 class="text-center">Forex Aggregator and Trends</h2><br><br><br><br>
+
+
+    <div id="market" class="border border-danger"><br>
+
+        <h2 class="text-center text-primary">Latest Market Price</h2><br><br>
+
+        <form #lmfForm="ngForm" (ngSubmit)="getLatest()" ngNativeValidate>
+            <div class="form-group">
+                <div class="row mx-auto">
+                    <label class="col-form-label col-md-2" for="pair1">Currency Pair 1: </label>
+                    <div class="col-md-2">
+                        <select name="pair1" id="pair1" class="form-control" required>
+                            <option value="" selected>Choose Any</option>
+                        </select>
+                    </div>
+
+                    <label class="col-form-label col-md-2" for="pair2">Currency Pair 2: </label>
+                    <div class="col-md-2">
+                        <select name="pair2" id="pair2" class="form-control" required>
+                            <option value="" selected>Choose Any</option>
+                        </select>
+                    </div>
+
+                    <label class="col-form-label col-md-2" for="pair3">Currency Pair 3: </label>
+                    <div class="col-md-2">
+                        <select name="pair3" id="pair3" class="form-control" required>
+                            <option value="" selected>Choose Any</option>
+                        </select>
+                    </div>
+                </div><br>
+                <div class="offset-6">
+                    <button type="submit" class="btn btn-success">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <div id="latest-price">
+            <br>
+            <h2 class="text-center text-warning"><u>Results</u></h2><br><br>
+
+            <div id="results" class="row mx-1">
+
+                    <!-- populated by getLatest() function -->
+
+
+            </div>
+
+        </div>
+
+    </div>

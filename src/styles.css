@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+
+.img-responsive {
+    width: 100%;
+    height: 60%;
+}
+
+.navbar-nav li {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.nav-item a {
+    color: white;
+    font-size: 1.4em;
+}
+
+body {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    color: white;
+    background-color: black;
+    background-position: center;
+    background-size: auto;
+}
+
+.card {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 1.4em;
+    color: white;
+    background-color: black;
+    background-position: center;
+    background-size: auto;
+}
+
+#info {
+    text-align: center;
+    font-size: 1.4em;
+}
+
+#results, #latest-results {
+    text-align: center;
+    font-size: 1.4em;
+}
+
+#results p {
+    color: red;
+}
+
+#about-us,
+#cross-currency,
+#converter,
+#market,
+#trends,
+#user-perf {
+    font-size: 1.4em;
+}
+
+.error,
+.note {
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.error {
+    color: red;
+}
+
+.note {
+    color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+}

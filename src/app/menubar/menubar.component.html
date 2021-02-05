@@ -1,0 +1,188 @@
+<header>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" routerLink="/home"><img src="assets/images/logo.jpg" alt="logo" style="width:40px;"></a>
+        <button class="navbar-toggler d-lg-none" type="button" (click)="isMenuCollapsed = !isMenuCollapsed" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                        true}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  (click)="isMenuCollapsed = true" routerLink="/latest-market" routerLinkActive="active-link"
+                        [routerLinkActiveOptions]="{exact:
+                        true}">Latest Market Price</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/currency-converter" routerLinkActive="active-link"
+                        [routerLinkActiveOptions]="{exact:
+                        true}">Currency Converter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/cross-currency" routerLinkActive="active-link"
+                        [routerLinkActiveOptions]="{exact:
+                        true}">Cross Currency</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/market-trends" routerLinkActive="active-link"
+                        [routerLinkActiveOptions]="{exact:
+                        true}">Market Trends</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/about-us" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                        true}">About Us</a>
+                </li>
+            </ul>
+
+
+
+            <div *ngIf="loggedIn===true">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item" ngbDropdown >
+                        <a class="nav-link dropdown-toggle" tabindex="0" ngbDropdownToggle id="navbarDropdown1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Welcome! <img width="40px" style="margin-bottom:3px; margin-right:5px" alt="User Account"
+                            src="assets/images/user-account.jpg" />
+                        </a>
+                        <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu bg-dark text-white">
+                            <a class="dropdown-item" (click)="isMenuCollapsed = true" routerLink="/user-dashboard" ngbDropdownItem>Dashboard</a>
+                            <a class="dropdown-item" (click)="isMenuCollapsed = true" routerLink="/user-preferences" ngbDropdownItem>Account Preferences</a>
+                            <a class="dropdown-item" (click)="isMenuCollapsed = true" (click)="logOut()" ngbDropdownItem>Log Out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <button type="button" class="btn btn-danger" (click)="open(content)" *ngIf="loggedIn===false">
+                Sign In/ Sign Up
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!--LOGIN MODAL-->
+<ng-template #content let-modal>
+    <div class="modal-header text-center">
+        <h4 class="modal-title text-dark w-100" id="modal-login">Sign-in To Your Account</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body container-fluid col-md-10 offset-2 text-dark">
+        <form #logForm="ngForm" (ngSubmit)="signIn(logForm.value, content2)" ngNativeValidate>
+
+            <div class="form-group row">
+                <label for="userid" class="col-form-label col-md-4">Email ID: </label>
+                <div class="col-md-6">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email ID"
+                        [(ngModel)]="logForm.email" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="text" class="col-form-label col-md-4">Password: </label>
+                <div class="col-md-6">
+                    <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password"
+                        [(ngModel)]="logForm.passwd" required>
+                </div>
+            </div>
+
+            <div class="col-md-10 text-center text-danger" *ngIf="signInErrorMessage">{{ signInErrorMessage }}</div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+
+                <div class="col-md-3 offset-1">
+                    <button type="submit" class="btn btn-success" >Log
+                        In</button>
+                </div>
+            </div>
+
+            <div class="form-group row col-md-8 offset-2">
+                <a class="btn btn-outline-dark" role="button" style="text-transform:none"
+                    (click)="googleSignInViaPopup()">
+                    <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google Sign-in"
+                        src="assets/images/google-logo.png" />
+                    Sign in with Google
+                </a>
+            </div>
+
+            <div class="form-group row col-md-8 offset-2">
+                <button type="button" class="btn btn-primary" (click)="show(content1)">
+                    New User ? Sign Up </button>
+            </div>
+
+        </form>
+    </div>
+</ng-template>
+
+<!--REGISTRATION MODAL-->
+<ng-template #content1 let-modal>
+    <div class="modal-header text-center">
+        <h4 class="modal-title text-dark w-100" id="modal-register">Create a new Account</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body container-fluid col-md-10 offset-2 text-dark">
+        <form #regForm="ngForm" (ngSubmit)="signUp(regForm.value, content2)" ngNativeValidate>
+
+            <div class="form-group row">
+                <label for="userid" class="col-form-label col-md-4">Email ID: </label>
+                <div class="col-md-6">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email ID"
+                        [(ngModel)]="regForm.email" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="text" class="col-form-label col-md-4">Password: </label>
+                <div class="col-md-6">
+                    <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password"
+                        [(ngModel)]="regForm.passwd" pattern=".{8,}" title="Minimum 8 characters" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="text" class="col-form-label col-md-4">Retype Password: </label>
+                <div class="col-md-6">
+                    <input type="password" class="form-control" id="rpasswd" name="rpasswd"
+                        placeholder="Retype Password" [(ngModel)]="regForm.rpasswd" pattern=".{8,}"
+                        title="Minimum 8 characters" required>
+                </div>
+            </div>
+
+            <div class="col-md-10 text-center text-danger" *ngIf="signUpErrorMessage">{{ signUpErrorMessage }}</div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+
+                <div class="col-md-4 offset-1">
+                    <button type="submit" class="btn btn-success">Sign
+                        Up</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</ng-template>
+
+
+<!--SUCCESS INFO MODAL-->
+<ng-template #content2 let-modal>
+    <div class="modal-body container-fluid col-md-10 offset-2 text-dark" id="modal-reginfo">
+
+        <h4>Registration Successful! Now Login using your new Credentials.</h4>
+
+        <div class="row col-md-10 offset-2">
+            <button type="button" class="btn btn-success" (click)="dismissAll()">OK</button>
+        </div>
+    </div>
+</ng-template>

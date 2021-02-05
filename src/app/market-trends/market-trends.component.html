@@ -1,0 +1,45 @@
+<h1 class="display-1 text-center"><b>Forex - CodeHex</b></h1>
+<h2 class="text-center">Forex Aggregator and Trends</h2><br><br><br><br>
+
+
+<div id="trends" class="border border-danger"><br>
+
+    <h2 class="text-center text-primary">Market Trends</h2><br><br>
+
+    <form #mtfForm="ngForm" (ngSubmit)="getTrend()" ngNativeValidate>
+        <div class="form-group">
+            <div class="row mx-auto">
+                <label class="col-form-label col-md-2 offset-1" for="pair1">From Currency: </label>
+                <div class="col-md-2">
+                    <select name="pair1" id="pair1" class="form-control" required>
+                        <option value="" selected>Choose Any</option>
+                    </select>
+                </div>
+
+                <label class="col-form-label col-md-2" for="pair2">To Currency: </label>
+                <div class="col-md-2">
+                    <select name="pair2" id="pair2" class="form-control" required>
+                        <option value="" selected>Choose Any</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success">Search</button>
+                </div>
+
+            </div><br>
+
+        </div>
+    </form>
+
+    <div id="latest-price">
+        <br>
+        <h2 class="text-center text-warning"><u>Results</u></h2><br><br>
+
+        <div id="results">
+            <!-- populated by getTrend() function -->
+        </div>
+
+    </div>
+
+</div>
